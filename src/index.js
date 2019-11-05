@@ -1,5 +1,11 @@
 // imports
 import './styles/main.css';
-import defaultView from './scripts/handler';
+import $ from 'jquery';
+import handlers from './scripts/handler';
 
-defaultView();
+const main = function() {
+  handlers.bindEventListeners();
+  handlers.render();
+};
+
+$(main);
