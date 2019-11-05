@@ -1,3 +1,19 @@
 select {
 	font-family: 'FontAwesome', 'Second Font name';
 }
+
+li {
+	list-style: none;
+	border: 1px solid #000;
+	margin: 10px;
+}
+
+span {
+	display: inline-block;
+	position: relative;
+	left: 70%;
+}
+
+h3 {
+	display: inline-block;
+}
