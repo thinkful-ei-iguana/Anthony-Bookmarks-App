@@ -1,0 +1,25 @@
+{
+	"name": "bookmark-app",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"css-loader": "^3.2.0",
+		"cuid": "^2.1.6",
+		"file-loader": "^4.2.0",
+		"font-awesome": "^4.7.0",
+		"html-webpack-plugin": "^3.2.0",
+		"jquery": "^3.4.1",
+		"style-loader": "^1.0.0",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10",
+		"webpack-dev-server": "^3.9.0"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"start": "webpack-dev-server",
+		"build": "webpack --mode production"
+	},
+	"author": "Anthony Bostic",
+	"license": "ISC"
+}
