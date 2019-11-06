@@ -2,24 +2,7 @@
 import api from './api';
 
 const store = {
-	bookmarks: [
-		{
-			id: 'x56w',
-			title: 'Title 1',
-			rating: 1,
-			url: 'http://www.title1.com',
-			description: 'lorem ipsum dolor sit',
-			expanded: false
-		},
-		{
-			id: '6ffw',
-			title: 'Title 2',
-			rating: 5,
-			url: 'http://www.title2.com',
-			description: 'dolorum tempore deserunt',
-			expanded: false
-		}
-	],
+	bookmarks: [],
 	adding: false,
 	error: null,
 	filter: 0
@@ -30,14 +13,12 @@ const findById = function(id) {
 };
 
 const addBookmark = function(item) {
-	for (let i = 0; i < store.bookmarks.length; i++) {
-		if (store.bookmarks[i]) {
-			store.bookmarks[i].expand = false;
+	for (let i of store.bookmarks) {
+		if (i) {
+			i.expand = false;
 		}
 	}
-	// adds bookmark to store
 	store.bookmarks.push(item);
-	// toggles adding state
 	store.adding = false;
 };
 
@@ -51,6 +32,11 @@ const expandBookmark = function(id) {
 	else {
 		targetBookmark.expand = true;
 	}
+	console.log(targetBookmark.expand);
+};
+
+const setAdding = function(param) {
+	store.adding = param;
 };
 
 const setFilter = function(rating) {
@@ -62,5 +48,6 @@ export default {
 	findById,
 	addBookmark,
 	expandBookmark,
+	setAdding,
 	setFilter
 };

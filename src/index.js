@@ -2,11 +2,16 @@
 import './styles/main.css';
 import $ from 'jquery';
 import 'normalize.css';
-import handlers from './scripts/handler';
+import store from './scripts/store';
+import api from './scripts/api';
+import handler from './scripts/handler';
 
 const main = function() {
-  handlers.bindEventListeners();
-  handlers.render();
+	api.getItems().then(res => {
+		res.forEach(item => store.addBookmark(item));
+		handler.render();
+	});
+	handler.bindEventListeners();
 };
 
 $(main);

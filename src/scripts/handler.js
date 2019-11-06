@@ -46,8 +46,6 @@ const render = function() {
 
 	if (STORE.adding) {
 		$('.creator').html(addNewString());
-
-		STORE.adding = false;
 	}
 	else if (!STORE.adding) {
 		$('.results-list').html(bookmarkString);
@@ -76,6 +74,27 @@ const addNewString = function() {
   `);
 };
 
+//add new button functionality
+const addNewHandler = function() {
+	$('.add-new').on('click', e => {
+		e.preventDefault();
+		store.setAdding(true);
+		render();
+		console.log(STORE.adding);
+	});
+};
+
+//cancel creation button handler
+const cancelCreateButton = function() {
+	$('.creator').on('click', '.cancel', e => {
+		e.preventDefault();
+		store.setAdding(false);
+		render();
+		console.log(STORE.adding);
+		console.log('cancel submit works');
+	});
+};
+
 //serialize form inputs into one string
 function serializeJson(form) {
 	const formData = new FormData(form);
@@ -97,39 +116,18 @@ const createButton = function() {
 			store.addBookmark(res);
 			render();
 		});
+		store.setAdding(false);
+		console.log(STORE.adding);
 		render();
 		console.log('submit works');
 	});
 };
 
-//add new button functionality
-const addNewHandler = function() {
-	$('.add-new').on('click', e => {
-		e.preventDefault();
-		if (!STORE.adding) {
-			STORE.adding = true;
-		}
-		render();
-		console.log(STORE.adding);
-	});
-};
-
-//cancel creation button handler
-const cancelCreateButton = function() {
-	$('.creator').on('click', '.cancel', e => {
-		e.preventDefault();
-		store.toggleAdding();
-		render();
-		console.log(STORE.adding);
-		console.log('cancel submit works');
-	});
-};
-
 const expandItem = function() {
 	$('.results-list').on('click', '.expand', e => {
-		console.log('expand was clicked');
 		const id = getItemIdFromElement(e.currentTarget);
 		store.expandBookmark(id);
+		console.log(id);
 		render();
 	});
 };
