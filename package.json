@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"homepage": "https://github.com/thinkful-ei-iguana/Anthony-Bookmarks-App",
 	"dependencies": {
 		"css-loader": "^3.2.0",
 		"cuid": "^2.1.6",
