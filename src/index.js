@@ -7,11 +7,11 @@ import api from './scripts/api';
 import handler from './scripts/handler';
 
 const main = function() {
-	api.getItems().then(res => {
-		res.forEach(item => store.addBookmark(item));
-		handler.render();
-	});
-	handler.bindEventListeners();
+  api.getItems().then(res => {
+    res.forEach(item => store.addBookmark(item));
+    handler.render();
+  });
+  handler.bindEventListeners();
 };
 
 $(main);
