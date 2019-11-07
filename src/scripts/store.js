@@ -1,5 +1,4 @@
 //imports
-import api from './api';
 
 const store = {
   bookmarks: [],
@@ -32,7 +31,6 @@ const expandBookmark = function(id) {
   else {
     targetBookmark.expand = true;
   }
-  console.log(targetBookmark.expand);
 };
 
 // const toggleExpand = function(id) {

@@ -5,7 +5,6 @@ import api from './api';
 
 //shortened store import
 const STORE = store.store;
-window.store = store;
 
 //generateItem
 const generateBookmark = function(bookmark) {
@@ -14,9 +13,9 @@ const generateBookmark = function(bookmark) {
     return `
     <li class='js-bookmark' data-item-id='${bookmark.id}'>
         <h2 class='title-ex'>${bookmark.title}</h2>
-        <div class='rating-ex'><h3 class='labels'>Rating: </h3>${bookmark.rating}</div>
-        <a href='${bookmark.url}' class='site-url-ex'>visit</a>
-		<p class='desc-ex'><h3 class='labels'>Description: </h3>${bookmark.desc}</p>
+        <div class='rating-ex'><h3 class='labels'>Rating: </h3> ${bookmark.rating} <i class="fas fa-star"></i></div>
+        <h4 class='site-ex'>Visit: <a href='${bookmark.url}' class='site-url-ex' target='blank_' title="Go to this bookmark's website">Link</a></h3>
+		<div class='desc'><h3 class='labels'>Description: </h3><p class='desc-ex'>${bookmark.desc}</p></div>
 		<button class='delete-button'><i class="far fa-trash-alt"></i></button>
 		<button class='close-button'><i class="fas fa-times"></i></button>
     </li>
@@ -25,9 +24,10 @@ const generateBookmark = function(bookmark) {
   else {
     return `
     <li class="js-bookmark" data-item-id="${bookmark.id}">
-      <button class="expand"><h3>${bookmark.title}</h3>
+      <button class="expand"></button>
+      <h3>${bookmark.title}</h3>
       <span>${bookmark.rating}<i class="fas fa-star"></i></span>
-      </button>
+      
     </li>
     `;
   }
@@ -66,13 +66,13 @@ const addNewString = function() {
   $('.creator').html(`
   <form class='inputs'>
     <label for='title'>Title:</label>
-        <input type='text' name='title' class='nameInput' placeholder='Google' required></input>
+        <input type='text' id='title' name='title' class='nameInput' placeholder='Google' required></input>
     <label for='url'>Site Url:</label>
-        <input type='text' name='url' class='urlInput' placeholder='https://Google.com' required></input>
+        <input type='url' id='url' name='url' class='urlInput' placeholder='https://Google.com' required></input>
     <label for='rating'>Rating:</label>
-        <input type='number' name='rating' class='ratingInput' placeholder='1-5' required></input>
+        <input type='number' name='rating' id='rating' class='ratingInput' min='1' max='5' placeholder='1-5' required></input>
     <label for='desc'>Description:</label>
-        <input type='textarea' name='desc' class='descInput' placeholder='Google is a search engine'></input>
+        <input type='textarea' id='desc' name='desc' class='descInput' placeholder='Google is a search engine'></input>
   </form>
   <div class='buttons-row'>
     <button class="complete"><i class="fas fa-check"></i></button>
@@ -87,7 +87,6 @@ const addNewHandler = function() {
     e.preventDefault();
     store.setAdding(true);
     render();
-    console.log(STORE.adding);
   });
 };
 
@@ -97,8 +96,6 @@ const cancelCreateButton = function() {
     e.preventDefault();
     store.setAdding(false);
     render();
-    console.log(STORE.adding);
-    console.log('cancel submit works');
   });
 };
 
@@ -118,7 +115,6 @@ const createButton = function() {
     counter++;
     let formElement = $('.inputs')[0];
     let value = serializeJson(formElement);
-    console.log(value);
     api
       .createItem(value)
       .then(res => {
@@ -131,9 +127,6 @@ const createButton = function() {
         $('.error').html(`<h5>${STORE.error}</h5>`);
         setTimeout(() => $('.error').html(''), 6000);
       });
-
-    console.log(STORE.adding);
-    console.log('submit works');
   });
 };
 
@@ -141,7 +134,6 @@ const expandItem = function() {
   $('.results-list').on('click', '.expand', e => {
     const id = getItemIdFromElement(e.currentTarget);
     store.expandBookmark(id);
-    console.log(id);
     render();
   });
 };
@@ -149,9 +141,7 @@ const expandItem = function() {
 const deleteItem = function() {
   $('.results-list').on('click', '.delete-button', e => {
     e.preventDefault();
-    console.log('hi');
     const id = getItemIdFromElement(e.currentTarget);
-    console.log(id);
     //delete the item
     api.deleteItem(id).then(() => {
       store.findAndDelete(id);
@@ -164,7 +154,6 @@ const deleteItem = function() {
 const closeItem = function() {
   $('.results-list').on('click', '.close-button', e => {
     e.preventDefault();
-    console.log('i wooork');
     const id = getItemIdFromElement(e.currentTarget);
     store.expandBookmark(id);
     render();
