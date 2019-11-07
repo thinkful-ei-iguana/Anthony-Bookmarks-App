@@ -1,19 +1,138 @@
+* {
+	text-align: center;
+
+	color: #fff;
+}
+
 select {
 	font-family: 'FontAwesome', 'Second Font name';
+	background-color: transparent;
+	border: 0;
 }
 
 li {
 	list-style: none;
-	border: 1px solid #000;
+	border: 1px solid #fff;
 	margin: 10px;
 }
 
 span {
 	display: inline-block;
-	position: relative;
-	left: 70%;
 }
 
 h3 {
 	display: inline-block;
+}
+
+button {
+	background-color: transparent;
+	border: 0;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+body {
+	background: url('../imgs/dark-wood.jpg');
+}
+
+/* Begin Control Buttons */
+
+.controls {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	margin: auto auto;
+	border: 1px solid #fff;
+	width: 70%;
+	padding: 10px;
+	background: rgba(0, 0, 0, .5);
+}
+
+.controls .filter {
+	margin-left: 80px;
+}
+
+.controls .fa-plus {
+	padding-left: 1px;
+	font-size: calc(3px + 2vmin);
+	color: #fff !important;
+}
+
+.controls .fa-bookmark {
+	font-size: calc(9px + 2vmin);
+	margin-right: 1px;
+}
+
+/* End Control Buttons */
+
+/* Begin Results List */
+
+.results-list {
+	width: 80%;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	margin: auto auto;
+	padding: 0;
+}
+
+.js-bookmark {
+	padding: 0px 20px 0px 20px;
+	background: rgba(0, 0, 0, .5);
+}
+
+.js-bookmark span {
+	margin-left: 45px;
+}
+
+/* End Results List */
+
+/* Begin Creation Form */
+
+.creator {
+	align-items: center;
+	justify-content: center;
+	display: block;
+	margin: auto auto;
+}
+
+.fa-check,
+.fa-times {
+	color: royalblue;
+}
+
+.inputs {
+	width: 60%;
+	justify-content: left;
+	text-align: initial;
+	border: 1px solid #fff;
+	padding: 10px;
+	margin: 10px;
+	position: relative;
+	left: 13%;
+	background: rgba(0, 0, 0, .5);
+}
+
+.inputs input[type=text] {
+	width: 70%;
+	display: block;
+	margin: 10px;
+	margin-left: 0px !important;
+	border-radius: 5px;
+}
+
+.inputs input[type=number] {
+	width: 20%;
+	display: block;
+	margin: 10px;
+	margin-left: 0px !important;
+	border-radius: 5px;
+}
+
+.inputs input[type=textarea] {
+	margin: 10px;
+	margin-left: 0px !important;
+	border-radius: 5px;
 }

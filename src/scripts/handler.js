@@ -14,10 +14,10 @@ const generateBookmark = function(bookmark) {
     return `
     <li class='js-bookmark' data-item-id='${bookmark.id}'>
         <h2 class='title-ex'>${bookmark.title}</h2>
-        <div class='rating-ex'>${bookmark.rating}</div>
+        <div class='rating-ex'><h3 class='labels'>Rating: </h3>${bookmark.rating}</div>
         <a href='${bookmark.url}' class='site-url-ex'>visit</a>
-		<p class='desc-ex'>${bookmark.desc}</p>
-		<button class='delete-button'><i class="fas fa-trash-alt"></i></button>
+		<p class='desc-ex'><h3 class='labels'>Description: </h3>${bookmark.desc}</p>
+		<button class='delete-button'><i class="far fa-trash-alt"></i></button>
 		<button class='close-button'><i class="fas fa-times"></i></button>
     </li>
     `;
@@ -59,25 +59,23 @@ const render = function() {
     $('.add-new').show();
   }
   $('.results-list').html(bookmarkString);
-
-  // $('.results-list').html(bookmarkString);
 };
 
 //add new bookmark form
 const addNewString = function() {
   $('.creator').html(`
   <form class='inputs'>
-    <label for='title'>Name</label>
+    <label for='title'>Title:</label>
         <input type='text' name='title' class='nameInput' placeholder='Google' required></input>
-    <label for='url'>Site Url</label>
+    <label for='url'>Site Url:</label>
         <input type='text' name='url' class='urlInput' placeholder='https://Google.com' required></input>
-    <label for='rating'>Rating</label>
+    <label for='rating'>Rating:</label>
         <input type='number' name='rating' class='ratingInput' placeholder='1-5' required></input>
-    <label for='desc'>Description</label>
-        <input type='text' name='desc' class='descInput' placeholder='Google is a search engine'></input>
+    <label for='desc'>Description:</label>
+        <input type='textarea' name='desc' class='descInput' placeholder='Google is a search engine'></input>
   </form>
   <div class='buttons-row'>
-    <button class="complete"><i class="fas fa-plus"></i></button>
+    <button class="complete"><i class="fas fa-check"></i></button>
     <button class="cancel"><i class="fas fa-times"></i></button>
   </div>
   `);
@@ -154,13 +152,11 @@ const deleteItem = function() {
     console.log('hi');
     const id = getItemIdFromElement(e.currentTarget);
     console.log(id);
-    // delete the item
+    //delete the item
     api.deleteItem(id).then(() => {
       store.findAndDelete(id);
       render();
     });
-    // .catch(handleError);
-    // render the updated shopping list
     render();
   });
 };
