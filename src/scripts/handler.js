@@ -8,13 +8,14 @@ const STORE = store.store;
 
 //generateItem
 const generateBookmark = function(bookmark) {
-	if (STORE.bookmarks.expand) {
+	if (bookmark.expand) {
 		return `
     <li class='js-bookmark' data-item-id='${bookmark.id}'>
         <h2 class='title-ex'>${bookmark.title}</h2>
         <div class='rating-ex'>${bookmark.rating}</div>
         <a href='${bookmark.url}' class='site-url-ex'>visit</a>
-        <p class='desc-ex'>${bookmark.description}</p>
+		<p class='desc-ex'>${bookmark.description}</p>
+		<button class='delete-button'><i class="fas fa-trash-alt"></i></button>
     </li>
     `;
 	}
@@ -132,6 +133,23 @@ const expandItem = function() {
 	});
 };
 
+const deleteItem = function() {
+	$('.results-list').on('click', '.delete-button', e => {
+		e.preventDefault();
+		console.log('hi');
+		const id = getItemIdFromElement(e.currentTarget);
+		console.log(id);
+		// delete the item
+		api.deleteItem(id).then(() => {
+			store.findAndDelete(id);
+			render();
+		});
+		// .catch(handleError);
+		// render the updated shopping list
+		render();
+	});
+};
+
 //gets id from elements for deleteing and editing
 const getItemIdFromElement = function(item) {
 	return $(item).closest('.js-bookmark').data('item-id');
@@ -143,6 +161,7 @@ const bindEventListeners = function() {
 	createButton();
 	cancelCreateButton();
 	expandItem();
+	deleteItem();
 };
 
 //exports

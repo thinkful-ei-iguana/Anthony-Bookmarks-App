@@ -35,6 +35,10 @@ const expandBookmark = function(id) {
 	console.log(targetBookmark.expand);
 };
 
+const findAndDelete = function(id) {
+	this.store.bookmarks = this.store.bookmarks.filter(bookmark => bookmark.id !== id);
+};
+
 const setAdding = function(param) {
 	store.adding = param;
 };
@@ -48,6 +52,7 @@ export default {
 	findById,
 	addBookmark,
 	expandBookmark,
+	findAndDelete,
 	setAdding,
 	setFilter
 };
