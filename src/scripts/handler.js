@@ -8,10 +8,10 @@ const STORE = store.store;
 
 //generateItem
 const generateBookmark = function(bookmark) {
-	if (bookmark.expanded) {
+	if (STORE.bookmarks.expand) {
 		return `
     <li class='js-bookmark' data-item-id='${bookmark.id}'>
-        <h2 class='expandedTitle'>${bookmark.title}</h2>
+        <h2 class='title-ex'>${bookmark.title}</h2>
         <div class='rating-ex'>${bookmark.rating}</div>
         <a href='${bookmark.url}' class='site-url-ex'>visit</a>
         <p class='desc-ex'>${bookmark.description}</p>
