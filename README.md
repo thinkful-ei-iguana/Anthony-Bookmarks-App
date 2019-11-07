@@ -16,4 +16,4 @@ Anthony Bostic's submission for Thinkful Engineering Immersion Bookmarks App Pro
 * As a user, I can select from a dropdown a "minimum rating" to filter the list by all bookmarks rated at or above the chosen selection
 
 #### link to live version
-[Live App](https://github.com/thinkful-ei-iguana/anthony-bookmarks-app)
+[Live App](https://thinkful-ei-iguana.github.io/Anthony-Bookmarks-App/)
